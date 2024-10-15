@@ -1,0 +1,15 @@
+html {
+    height: 100%;
+}
+
+header {
+    background-color: #96BDC6;
+    color: #30362F;
+}
+
+.pokechat-logo {
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+}
