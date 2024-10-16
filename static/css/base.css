@@ -1,15 +1,45 @@
-html {
+html, body {
     height: 100%;
+    background-color: #E4E0CF;
+    color: #30362F;
+    font-family: 'Concert One', sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
-header {
+/* Sidebar Layout */
+.sidebar {
+    width: 200px;
     background-color: #96BDC6;
-    color: #30362F;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    position: fixed;
 }
 
 .pokechat-logo {
-    height: 200px;
-    width: 200px;
+    height: 150px;
+    width: 150px;
     object-fit: cover;
     border-radius: 50%;
+}
+
+.nav-link {
+    font-size: 28px !important;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.nav-link:hover {
+    background-color: #E4E0CF;
+    padding: 10px;
+    border-radius: 50%;
+}
+
+.content {
+    margin-left:220px;
+    padding: 20px;
 }
