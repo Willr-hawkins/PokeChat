@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-ez(cykz1(5a%0bu47=&xe0s8lfrn*68+vx(o-26#2jz)29-cxu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-willrhawkins-pokechat-lm0cu1tjj13.ws-eu116.gitpod.io']
+ALLOWED_HOSTS = ['8000-willrhawkins-pokechat-piftak7vf3a.ws-eu116.gitpod.io']
 
 
 # Application definition
@@ -120,7 +120,7 @@ DATABASES = {
 
 #Trusted Origins
 CSRF_TRUSTED_ORIGINS =  [
-    'https://8000-willrhawkins-pokechat-lm0cu1tjj13.ws-eu116.gitpod.io'
+    'https://8000-willrhawkins-pokechat-piftak7vf3a.ws-eu116.gitpod.io'
 ]
 
 # Password validation
@@ -163,6 +163,10 @@ STATIC_URL = '/static/'
 
 # STATICFILES_DIRS can be used to define additional static directories
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+#Media settings
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # This is where collected static files will go when you run collectstatic (for production)
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

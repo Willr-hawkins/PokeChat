@@ -2,4 +2,29 @@
 {% load static %}
 
 {% block content %}
+    <div class="post-feed">
+        {% if posts %}
+            {% for post in posts %}
+                <div class="post">
+                    <div class="post-image">
+                        <img src="{{ post.post_image.url }}" alt="Post Image">
+                    </div>
+                    <div class="post-details">
+                        <h2>Post by {{ post.author.username }}</h2>
+                        <p class="post-caption">{{ post.post_caption }}</p>
+                        <p class="post-date">Created on: {{ post.created_on }}</p>
+                        
+                        <!-- Actions Section -->
+                        <div class="post-actions">
+                            <button class="like-button">👍 Like</button>
+                            <button class="comment-button">💬 Comment</button>
+                            <button class="share-button">🔗 Share</button>
+                            <p class="likes-count">0 Likes</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="no-posts">No published posts available.</p>
+        {% endif %}
+    </div>
 {% endblock %}

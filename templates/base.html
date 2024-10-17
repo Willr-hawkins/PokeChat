@@ -8,10 +8,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Favicon links -->
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'media/favicon/apple-touch-icon.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'media/favicon/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'media/favicon/favicon-16x16.png' %}">
-    <link rel="icon" type="image/x-icon" href="{% static 'media/favicon/favicon.ico' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon/favicon.ico' %}">
     {% endblock %}
 
     {% block extra_meta %}
@@ -56,7 +56,7 @@
         <!-- Top Section: Logo and Main Navigation -->
         <div class="d-flex flex-column align-items-center">
             <a href="{% url 'home' %}">
-                <img class="pokechat-logo mt-3" src="{% static 'media/images/PokeChat-logo.webp' %}" alt="PokeChat Logo">
+                <img class="pokechat-logo mt-3" src="{% static 'images/PokeChat-logo.webp' %}" alt="PokeChat Logo">
             </a>
             <nav class="nav flex-column mt-4">
                 <a class="nav-link" href="#"><i class="fa-solid fa-house" style="color: #30362F;"></i></a>
