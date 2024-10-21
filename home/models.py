@@ -9,7 +9,7 @@ class Post(models.Model):
         User, on_delete=models.CASCADE, related_name='posts'
     )
     post_image = models.ImageField(null=True, blank=True)
-    post_caption = models.TextField(max_length=150)
+    post_caption = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
 

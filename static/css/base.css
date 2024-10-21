@@ -7,9 +7,9 @@ html, body {
 }
 
 body {
-    background: url('../images/PokeChat-background.jpg') no-repeat center center;
+    background: url('../images/PokeChat-background.jpg')no-repeat center center;
     background-size: cover;
-    background-attachment: scroll;
+    background-attachment: fixed;
 }
 
 /* Sidebar Layout */
@@ -53,7 +53,9 @@ body {
 
 .feed {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding: 20px;
 }
 
@@ -69,23 +71,71 @@ body {
     align-items: center;
 }
 
-.img-container {
-    background-color: #E4E0CF !important;
-    margin: 10px;
-    border-radius: 15px;
-    border: 3px solid #30362F;
-}
-
 .post-image {
     padding: 5px;
     border-radius: 15px;
 }
 
+.card-body {
+    height: 100%;
+}
+
+/* Ensures the .img-container and .card-body-container are always equal height */
+.row.g-0 {
+    display: flex; /* Flexbox layout for equal height columns */
+    align-items: stretch; /* Ensure the children stretch to the same height */
+}
+
+.img-container,
 .card-body-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Ensure content inside is centered */
+    height: 100%;
     background-color: #E4E0CF !important;
-    margin: 10px;
     border-radius: 15px;
     border: 3px solid #30362F;
+    margin: auto 3px;
+}
+
+.img-container img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    border-radius: 15px;
+}
+
+.card-body-container {
+    flex: 1;
+}
+
+/* Limit the caption to 2 lines and hide overflow */
+.post-caption {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 3em;
+    transition: max-height 0.5s ease;
+}
+
+/* When expanded, show the full caption */
+.post-caption.expanded {
+    -webkit-line-clamp: unset;
+    max-height: none;
+}
+
+/* Style the "Read More" link */
+.read-more {
+    color: #617557;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.read-more:hover {
+    text-decoration: underline;
 }
 
 .like-button {
