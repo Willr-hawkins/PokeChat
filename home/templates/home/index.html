@@ -35,16 +35,34 @@
     </div>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Loop through each post and check if the caption is more than 2 lines
-        document.querySelectorAll('.post-caption').forEach(function(caption) {
-            const lineHeight = parseInt(window.getComputedStyle(caption).lineHeight); // Get the line-height of the caption
-            const maxTwoLineHeight = lineHeight * 2; // Calculate the maximum height for 2 lines
-            
-            // If the actual height of the caption exceeds 2 lines, show the read-more link
-            if (caption.scrollHeight > maxTwoLineHeight) {
+        // Function to check and show the "Read More" link if needed
+        function checkCaptions() {
+            document.querySelectorAll('.post-caption').forEach(function(caption) {
+                const lineHeight = parseInt(window.getComputedStyle(caption).lineHeight); // Get the line-height of the caption
+                const maxTwoLineHeight = lineHeight * 2; // Calculate the maximum height for 2 lines
+
+                // If the actual height of the caption exceeds 2 lines, show the read-more link
                 const postId = caption.id.split('-')[1]; // Extract the post ID from the caption element's id
-                document.getElementById(`read-more-${postId}`).style.display = 'inline'; // Show the Read More link
-            }
+                const readMoreLink = document.getElementById(`read-more-${postId}`);
+
+                if (caption.scrollHeight > maxTwoLineHeight) {
+                    readMoreLink.style.display = 'inline'; // Show the Read More link
+                } else {
+                    readMoreLink.style.display = 'none'; // Hide the Read More link if it's not needed
+                }
+            });
+        }
+
+        // Initial check when the page loads
+        checkCaptions();
+
+        // Recheck when the window is resized (throttled to avoid performance issues)
+        let resizeTimer;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() {
+                checkCaptions();
+            }, 250); // Delay of 250ms to throttle the resize event
         });
     });
 
