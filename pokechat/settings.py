@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'allauth', #allauth required
     'allauth.account', #allauth required
+    'crispy_forms',
+    'crispy_bootstrap5',
 
     #allauth installations for creating account via socail media.
     'allauth.socialaccount',
@@ -61,6 +63,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'pokechat.urls'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 TEMPLATES = [
     {
