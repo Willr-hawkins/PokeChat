@@ -8,7 +8,7 @@ class Post(models.Model):
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='posts'
     )
-    post_image = models.ImageField(null=True, blank=True)
+    post_image = models.ImageField(null=True, blank=False)
     post_caption = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)

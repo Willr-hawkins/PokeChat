@@ -3,7 +3,9 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <h1>Add a post!</h1>
+    <div class="add-post mb-4">
+        <h1 class="text-center add-post-header">Add a post!</h1>
+    </div>
     <div class="add-post">
         <!-- Add post form -->
         <div class="form-container" id="form-container">
@@ -51,14 +53,37 @@
         // Get elements from the form
         const captionInput = document.querySelector('textarea[name="post_caption"]');  // Assuming the caption is a textarea
         const imageInput = document.querySelector('input[name="post_image"]'); // Ensure this selects the correct input
-        const previewCaption = document.getElementById('preview-caption');
-        const previewImage = document.getElementById('preview-image');
         const previewButton = document.getElementById('preview-post-button');  // Preview button
-        const postPreview = document.getElementById('post-preview');  // Preview section
-        const formContainer = document.getElementById('form-container');  // Form container
+    
+        // Disable the preview button initially
+        previewButton.disabled = true;
+    
+        // Function to check if the form is valid
+        function checkFormValidity() {
+            // Check if the caption and image are not empty
+            const isCaptionValid = captionInput.value.trim() !== "";  // Make sure caption is not empty
+            const isImageValid = imageInput.files.length > 0;  // Check if an image file is selected
+    
+            // Enable the preview button only if both fields are valid
+            if (isCaptionValid && isImageValid) {
+                previewButton.disabled = false;
+            } else {
+                previewButton.disabled = true;
+            }
+        }
+    
+        // Add event listeners to check form validity when inputs change
+        captionInput.addEventListener('input', checkFormValidity);  // For caption input
+        imageInput.addEventListener('change', checkFormValidity);  // For image input
     
         // Function to update the preview
         function generatePreview() {
+            // Get preview elements
+            const postPreview = document.getElementById('post-preview');  // Preview section
+            const formContainer = document.getElementById('form-container');  // Form container
+            const previewCaption = document.getElementById('preview-caption');
+            const previewImage = document.getElementById('preview-image');
+            
             // Show the preview section when the button is clicked
             if (postPreview.style.display === 'none' || postPreview.style.display === '') {
                 postPreview.style.display = 'block'; // Show the preview
@@ -69,11 +94,11 @@
                 formContainer.style.width = '100%'; // Reset form width to full
                 return; // Exit if we are hiding the preview
             }
-    
+        
             // Update the caption
             const captionText = captionInput.value;
             previewCaption.textContent = captionText ? captionText : 'Your post caption will appear here...';
-    
+        
             // Update the image preview if an image is selected
             const file = imageInput.files[0]; // Get the file from the input
             if (file) {

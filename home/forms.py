@@ -8,4 +8,4 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = '__all__'
+        fields = ['post_image', 'post_caption', 'status']

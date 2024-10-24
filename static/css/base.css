@@ -165,6 +165,13 @@ body {
 }
 
 /* Add post page */
+.add-post-header {
+    background-color: #E4E0CF;
+    padding: 20px;
+    border-radius: 15px;
+    border: 3px solid #30362F;
+    width: 100%;
+}
 
 .add-post {
     background-color: #96BDC6;
