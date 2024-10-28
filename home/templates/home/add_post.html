@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="add-post mb-4">
+        <h1 class="text-center add-post-header">Add a post!</h1>
+    </div>
+    <div class="add-post">
+        <!-- Add post form -->
+        <div class="form-container" id="form-container">
+            <form method="POST" action="{% url 'add_post' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button id="add-post-button" type="submit" class="btn btn-lg rounded-2 my-2">Post</button>
+                <button id="preview-post-button" type="button" class="btn btn-lg rounded-2 my-2">Preview</button>
+            </form>
+        </div>
+
+        <!-- Post preview  -->
+        <div class="post-preview" id="post-preview" style="display: none;">
+            <h3>Post Preview</h3>
+            <div id="posts" class="card col-6">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <div class="img-container">
+                            <img id="preview-image" src="#" class="post-image img-fluid" alt="Post Image">
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body-container">
+                            <div class="card-body">
+                                <h4 class="card-title" id="preview-author">{{ request.user.username }}</h4> <!-- Use logged-in user -->
+                                <hr>
+                                <p class="card-text"><strong>{{ request.user.username }}</strong>:</p>
+                                <p class="post-caption" id="preview-caption">Your post caption will appear here...</p>
+                                <p class="card-text"><small class="text-body-secondary">Just now</small></p>
+                                <hr>
+                                <div class="mb-1">
+                                    <button class="like-button"><i class="fa-regular fa-heart"></i></button>
+                                    <a class="comment-button" href="javascript:void(0)"><i class="fa-regular fa-comment"></i></a>
+                                    <a class="share-button" href="javascript:void(0)"><i class="fa-regular fa-share-from-square"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get elements from the form
+        const captionInput = document.querySelector('textarea[name="post_caption"]');  // Assuming the caption is a textarea
+        const imageInput = document.querySelector('input[name="post_image"]'); // Ensure this selects the correct input
+        const previewButton = document.getElementById('preview-post-button');  // Preview button
+    
+        // Disable the preview button initially
+        previewButton.disabled = true;
+    
+        // Function to check if the form is valid
+        function checkFormValidity() {
+            // Check if the caption and image are not empty
+            const isCaptionValid = captionInput.value.trim() !== "";  // Make sure caption is not empty
+            const isImageValid = imageInput.files.length > 0;  // Check if an image file is selected
+    
+            // Enable the preview button only if both fields are valid
+            if (isCaptionValid && isImageValid) {
+                previewButton.disabled = false;
+            } else {
+                previewButton.disabled = true;
+            }
+        }
+    
+        // Add event listeners to check form validity when inputs change
+        captionInput.addEventListener('input', checkFormValidity);  // For caption input
+        imageInput.addEventListener('change', checkFormValidity);  // For image input
+    
+        // Function to update the preview
+        function generatePreview() {
+            // Get preview elements
+            const postPreview = document.getElementById('post-preview');  // Preview section
+            const formContainer = document.getElementById('form-container');  // Form container
+            const previewCaption = document.getElementById('preview-caption');
+            const previewImage = document.getElementById('preview-image');
+            
+            // Show the preview section when the button is clicked
+            if (postPreview.style.display === 'none' || postPreview.style.display === '') {
+                postPreview.style.display = 'block'; // Show the preview
+                formContainer.style.width = '48%';   // Resize the form to take half the space
+                postPreview.style.width = '48%';      // Set the width for the preview
+            } else {
+                postPreview.style.display = 'none'; // Hide the preview
+                formContainer.style.width = '100%'; // Reset form width to full
+                return; // Exit if we are hiding the preview
+            }
+        
+            // Update the caption
+            const captionText = captionInput.value;
+            previewCaption.textContent = captionText ? captionText : 'Your post caption will appear here...';
+        
+            // Update the image preview if an image is selected
+            const file = imageInput.files[0]; // Get the file from the input
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImage.src = e.target.result;  // Set the source of the preview image
+                    previewImage.style.display = 'block'; // Show the image
+                };
+                reader.readAsDataURL(file); // Read the file as a data URL
+            } else {
+                previewImage.src = '#'; // Reset if no file is selected
+                previewImage.style.display = 'none'; // Hide the image if no file is selected
+            }
+        }
+    
+        // Add an event listener for the "Preview" button
+        previewButton.addEventListener('click', generatePreview);
+    </script>
+{% endblock %}
