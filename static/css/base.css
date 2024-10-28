@@ -1,0 +1,254 @@
+html, body {
+    height: 100%;
+    color: #30362F;
+    font-family: 'Concert One', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: url('../images/PokeChat-background.jpg')no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* Sidebar Layout */
+.sidebar {
+    width: 200px;
+    background-color: #96BDC6;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    position: fixed;
+}
+
+.pokechat-logo {
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.nav {
+    width: 63.5px;
+}
+
+.nav-link {
+    font-size: 28px !important;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.nav-link:hover {
+    background-color: #E4E0CF;
+    padding: 10px;
+    border-radius: 50%;
+}
+
+.content {
+    margin-left:220px;
+    padding: 20px;
+}
+
+/* allauth forms */
+
+#accounts {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.allauth-forms {
+    max-width: 800px;
+    width: 100%;
+    background-color: #96BDC6 !important;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 15px;
+    align-items: center;
+}
+
+.allauth-form-container {
+    background-color: #E4E0CF !important;
+    border-radius: 15px;
+    border: 3px solid #30362F;
+    padding: 10px;
+    margin: 5px;
+}
+
+/* Posts */
+
+.feed {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+#posts {
+    max-width: 800px;
+    width: 100%;
+    background-color: #96BDC6 !important;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 20px;
+    align-items: center;
+}
+
+.post-image {
+    padding: 5px;
+    border-radius: 15px;
+}
+
+.card-body {
+    height: 100%;
+}
+
+/* Ensures the .img-container and .card-body-container are always equal height */
+.row.g-0 {
+    display: flex; /* Flexbox layout for equal height columns */
+    align-items: stretch; /* Ensure the children stretch to the same height */
+}
+
+.img-container,
+.card-body-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Ensure content inside is centered */
+    height: 100%;
+    background-color: #E4E0CF !important;
+    border-radius: 15px;
+    border: 3px solid #30362F;
+    margin: 5px;
+}
+
+.img-container img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    border-radius: 15px;
+}
+
+.card-body-container {
+    flex: 1;
+}
+
+/* Limit the caption to 2 lines and hide overflow */
+.post-caption {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 3em;
+    transition: max-height 0.5s ease;
+}
+
+/* When expanded, show the full caption */
+.post-caption.expanded {
+    -webkit-line-clamp: unset;
+    max-height: none;
+}
+
+/* Style the "Read More" link */
+.read-more {
+    color: #617557;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.read-more:hover {
+    text-decoration: underline;
+}
+
+.like-button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    outline: none;
+}
+
+.like-button i {
+    font-size: 24px;
+    color: #30362F;
+}
+
+.comment-button,
+.share-button {
+    text-decoration: none;
+    font-size: 24px;
+    color: #30362F;
+    margin-left: 17px;
+}
+
+/* Add post page */
+.add-post-header {
+    background-color: #E4E0CF;
+    padding: 20px;
+    border-radius: 15px;
+    border: 3px solid #30362F;
+    width: 100%;
+}
+
+.add-post {
+    background-color: #96BDC6;
+    padding: 20px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    transition: all 0.3s ease-in-out;
+}
+
+.form-container {
+    background-color: #E4E0CF;
+    padding: 10px;
+    border-radius: 15px;
+    border: 3px solid #30362F;
+    width: 100%;
+    transition: width 0.3s ease-in-out;
+}
+
+.post-preview {
+    background-color: #E4E0CF;
+    padding: 10px;
+    border-radius: 15px;
+    border: 3px solid #30362F;
+    width: 50%;
+    transition: width 0.3s ease-in-out;
+}
+
+#post-preview #posts {
+    margin-left: 0;
+    margin-top: 20px;
+}
+
+#add-post-button,
+#preview-post-button {
+    background-color: #96BDC6;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+#add-post-button:hover,
+#preview-post-button:hover {
+    background-color: #E4E0CF;
+    border: 0.5px solid #30362F;
+    transform: scale(1.10);
+}
+
+#preview-post-button {
+    margin-left: 8px;
+}
