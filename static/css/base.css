@@ -83,6 +83,16 @@ body {
     margin: 5px;
 }
 
+#allauth-button {
+    background-color: #96BDC6;
+    font-weight: 600;
+}
+
+#allauth-button:hover {
+    background-color: #E4E0CF;
+    border: 0.5px solid #30362F
+}
+
 /* Posts */
 
 .feed {
@@ -239,14 +249,12 @@ body {
 #preview-post-button {
     background-color: #96BDC6;
     font-weight: bold;
-    transition: 0.3s;
 }
 
 #add-post-button:hover,
 #preview-post-button:hover {
     background-color: #E4E0CF;
     border: 0.5px solid #30362F;
-    transform: scale(1.10);
 }
 
 #preview-post-button {

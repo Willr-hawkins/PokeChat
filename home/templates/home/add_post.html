@@ -12,8 +12,8 @@
             <form method="POST" action="{% url 'add_post' %}" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form|crispy }}
-                <button id="add-post-button" type="submit" class="btn btn-lg rounded-2 my-2">Post</button>
-                <button id="preview-post-button" type="button" class="btn btn-lg rounded-2 my-2">Preview</button>
+                <button id="add-post-button" type="submit" class="btn btn-lg rounded-4 my-2">Post</button>
+                <button id="preview-post-button" type="button" class="btn btn-lg rounded-4 my-2">Preview</button>
             </form>
         </div>
 
