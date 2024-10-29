@@ -46,7 +46,9 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
 
+    #project apps
     'home',
+    'profiles',
 ]
 
 MIDDLEWARE = [
