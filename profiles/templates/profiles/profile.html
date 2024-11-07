@@ -42,6 +42,7 @@
                                 <div class="card-body-container">
                                     <div class="card-body">
                                     <h4 class="card-title">{{ post.author }}</h4>
+                                    <a href="{% url 'delete_post' post.id%}"><i class="fa-solid fa-ellipsis"></i></a>
                                     <hr>
                                     <p class="card-text mt-3"><strong>{{ post.author }}</strong>:</p>
                                     <p class="post-caption" id="caption-{{ post.id }}">{{ post.post_caption }}</p>

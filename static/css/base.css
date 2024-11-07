@@ -305,6 +305,24 @@ hr {
     margin-left: 8px;
 }
 
+/* Delete post page */
+.delete-post {
+    background-color: #96BDC6;
+    padding: 25px;
+    border-radius: 15px;
+    border: 3px solid #30362F;
+}
+
+.delete-post-container {
+    background-color: #E4E0CF;
+    border-radius: 15px;
+    border: 3px solid #30362F;
+}
+
+.delete-post-container hr {
+    margin: 0 auto;
+}
+
 /* Form styles */
 .add-post-header,
 .create-profile-header {
@@ -332,4 +350,14 @@ hr {
     border: 3px solid #30362F;
     width: 100%;
     transition: width 0.3s ease-in-out;
+}
+
+#form-button {
+    background-color: #96BDC6;
+    font-weight: 600;
+}
+
+#form-button:hover {
+    background-color: #E4E0CF;
+    border: 0.5px solid #30362F
 }
