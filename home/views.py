@@ -3,7 +3,8 @@ from django.contrib.auth.decorators import login_required
 
 # Imported models and forms
 from .models import Post
-from .forms import PostForm 
+from .forms import PostForm, UpdateStatusForm 
+from profiles.models import UserProfile
 
 def published_posts(request):
     """
@@ -27,10 +28,14 @@ def add_post(request):
             return redirect(reverse('home'))
     else:
         form = PostForm()
+
+    # Get the users profile image for the post preview.
+    user_profile = UserProfile.objects.get(user=request.user)
     
     template = 'home/add_post.html'
     context = {
         'form': form,
+        'profile_image': user_profile.profile_image,
     }
 
     return render(request, template, context)
@@ -53,3 +58,24 @@ def delete_post(request, post_id):
     return render(request, 'home/delete_post.html', context)
 
 
+@login_required
+def change_post_status(request, post_id):
+    """
+    Change the status on a post if the user is post.author.
+    """
+    post = get_object_or_404(Post, id=post_id, author=request.user)
+
+    if request.method == 'POST':
+        form = UpdateStatusForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('profile'))
+    else:
+        form = UpdateStatusForm(instance=post)
+    
+    context = {
+        'post': post,
+        'form': form,
+    }
+
+    return render(request, 'home/post_status.html', context)

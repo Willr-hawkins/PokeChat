@@ -9,3 +9,12 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ['post_image', 'post_caption', 'status']
+
+class UpdateStatusForm(forms.ModelForm):
+    """
+    A form to update a existing posts status.
+    """
+
+    class Meta:
+        model = Post
+        fields = ['status']

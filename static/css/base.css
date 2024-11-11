@@ -164,12 +164,32 @@ hr {
     background-color: #E4E0CF !important;
 }
 
+.post-managment-icon {
+    color: #30362F;
+}
+
+.draft-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    pointer-events: none;
+}
+
 /* Posts */
 .feed {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     padding: 20px;
 }
 
@@ -178,11 +198,17 @@ hr {
     width: 100%;
     background-color: #96BDC6 !important;
     border-radius: 15px;
-    margin-bottom: 20px;
-    margin-left: 10px;
-    margin-right: 10px;
     padding: 20px;
     align-items: center;
+    margin: 20px auto;
+}
+
+.card-title img {
+    border-radius: 50%;
+    border: 2px solid #30362F;
+    height: 80px;
+    width: 80px;
+    object-fit: cover;
 }
 
 .post-image {
@@ -191,7 +217,7 @@ hr {
 }
 
 .card-body {
-    height: 100%;
+    flex-grow: 1;
 }
 
 /* Ensures the .img-container and .card-body-container are always equal height */
@@ -220,8 +246,11 @@ hr {
 }
 
 .card-body-container {
-    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
+
 
 /* Limit the caption to 2 lines and hide overflow */
 .post-caption {
@@ -306,20 +335,27 @@ hr {
 }
 
 /* Delete post page */
-.delete-post {
+.delete-post,
+.update-post-status {
     background-color: #96BDC6;
     padding: 25px;
     border-radius: 15px;
     border: 3px solid #30362F;
 }
 
-.delete-post-container {
+.delete-post-container,
+.update-post-status-container {
     background-color: #E4E0CF;
     border-radius: 15px;
     border: 3px solid #30362F;
 }
 
-.delete-post-container hr {
+.delete-post-container hr,
+.update-post-status-container hr {
+    margin: 15px auto;
+}
+
+.update-post-status-container form {
     margin: 0 auto;
 }
 
