@@ -18,3 +18,18 @@ class Post(models.Model):
 
     def __str__(self):
         return f'post by {self.author}.'
+
+
+class PostComment(models.Model):
+    """ Stores a single PostComment entry related to :model:`auth.User` and :model:`Post`. """
+    post = models.ForeignKey(
+        Post, null=False, blank=False, on_delete=models.CASCADE, related_name='comments'
+        )
+    comment_author = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='commenter'
+    )
+    comment_body = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_on']

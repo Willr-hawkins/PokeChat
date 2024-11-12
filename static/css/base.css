@@ -227,11 +227,13 @@ hr {
 }
 
 .img-container,
-.card-body-container {
+.card-body-container,
+.comments {
     display: flex;
     flex-direction: column;
     justify-content: center !important; /* Ensure content inside is centered */
     height: 100%;
+    max-height: 350px;
     background-color: #E4E0CF !important;
     border-radius: 15px;
     border: 3px solid #30362F;
@@ -250,7 +252,6 @@ hr {
     flex-direction: column;
     height: 100%;
 }
-
 
 /* Limit the caption to 2 lines and hide overflow */
 .post-caption {
@@ -396,4 +397,13 @@ hr {
 #form-button:hover {
     background-color: #E4E0CF;
     border: 0.5px solid #30362F
+}
+
+.comment-textarea {
+    height: auto;
+    resize: vertical;
+    overflow-y: hidden;
+    min-height: 1.5rem;
+    width: 98% !important;
+    margin: 10px auto !important;
 }

@@ -2,8 +2,8 @@ from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.contrib.auth.decorators import login_required
 
 # Imported models and forms
-from .models import Post
-from .forms import PostForm, UpdateStatusForm 
+from .models import Post, PostComment
+from .forms import PostForm, UpdateStatusForm, CommentForm
 from profiles.models import UserProfile
 
 def published_posts(request):
@@ -11,8 +11,14 @@ def published_posts(request):
     View to return a list of all posts with a status = 1.
     """
     posts = Post.objects.filter(status=1).order_by('-created_on')
+    form = CommentForm()
+
+    context = {
+        'posts': posts,
+        'form': form,
+    }
     
-    return render(request, 'home/index.html', {'posts': posts})
+    return render(request, 'home/index.html', context)
 
 @login_required
 def add_post(request):
@@ -57,7 +63,6 @@ def delete_post(request, post_id):
 
     return render(request, 'home/delete_post.html', context)
 
-
 @login_required
 def change_post_status(request, post_id):
     """
@@ -79,3 +84,29 @@ def change_post_status(request, post_id):
     }
 
     return render(request, 'home/post_status.html', context)
+
+@login_required
+def post_comment(request, post_id):
+    """
+    A view to leave a comment on a post.
+    """
+    post = get_object_or_404(Post, id=post_id)
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.comment_author = request.user
+            comment.post = post
+            post.save()
+            return redirect(reverse('home'))
+    else:
+        form = CommentFormForm()
+
+    context = {
+        'post': post,
+        'form': form,
+    }
+
+    return render(request, 'home/index.html', context)
+    

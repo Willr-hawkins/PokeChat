@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post
+from .models import Post, PostComment
 
 class PostForm(forms.ModelForm):
     """ 
@@ -18,3 +18,12 @@ class UpdateStatusForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ['status']
+
+class CommentForm(forms.ModelForm):
+    """
+    A form to create a new comment on a post.
+    """
+
+    class Meta:
+        model = PostComment
+        fields = ['comment_body']
