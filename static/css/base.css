@@ -227,8 +227,7 @@ hr {
 }
 
 .img-container,
-.card-body-container,
-.comments {
+.card-body-container {
     display: flex;
     flex-direction: column;
     justify-content: center !important; /* Ensure content inside is centered */
@@ -237,7 +236,6 @@ hr {
     background-color: #E4E0CF !important;
     border-radius: 15px;
     border: 3px solid #30362F;
-    margin: 5px !important;
 }
 
 .img-container img {
@@ -251,6 +249,7 @@ hr {
     display: flex;
     flex-direction: column;
     height: 100%;
+    margin-left: 10px;
 }
 
 /* Limit the caption to 2 lines and hide overflow */
@@ -302,6 +301,43 @@ hr {
     font-size: 24px;
     color: #30362F;
     margin-left: 17px;
+}
+
+/* Post Comments */
+.comments {
+    background-color: #E4E0CF;
+    max-height: none;
+    overflow: visible;
+    display: block;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 15px;
+    border: 3px solid #30362F;
+    width: 100%;
+}
+
+.post-comment { 
+    background-color: #96BDC6;
+    border-radius: 15px;
+    border: 2px solid #30362F;
+    margin: 5px;
+    max-width: 800px;
+    width: 100%;
+}
+
+.post-comment p,
+.post-comment strong,
+.post-comment small {
+    margin: 5px;
+} 
+
+.comment-title img {
+    border-radius: 50%;
+    border: 2px solid #30362F;
+    height: 40px;
+    width: 40px;
+    object-fit: cover;
+    margin: 3px;
 }
 
 /* Add post page */

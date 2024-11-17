@@ -93,15 +93,18 @@ def post_comment(request, post_id):
     post = get_object_or_404(Post, id=post_id)
 
     if request.method == 'POST':
+        print("POST Data:", request.POST)
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
             comment.comment_author = request.user
             comment.post = post
-            post.save()
+            comment.save()
             return redirect(reverse('home'))
+        else:
+            print("Form Errors:", form.errors)
     else:
-        form = CommentFormForm()
+        form = CommentForm()
 
     context = {
         'post': post,

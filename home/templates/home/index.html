@@ -40,11 +40,24 @@
             <div class="comments" id="comments-{{ post.id }}" style="display: none; margin-top: 10px;">
                 <form method="post" action="{% url 'add_comment' post.id %}">
                     {% csrf_token %}
-                    <textarea name="comment"
+                    <textarea name="comment_body"
                         class="form-control comment-textarea">{{ form.comment|crispy }}</textarea>
                     <button id="form-button" type="submit"
                         class="btn btn-sm rounded-4 ms-2 mb-2">Comment</button>
                 </form>
+                <hr>
+                {% if post.comments.all %}
+                    {% for comment in post.comments.all %}
+                        <div class="post-comment col-12 col-lg-8">
+                            <strong class="comment-title"><img src="{{ post.author.userprofile.profile_image.url }}"
+                                alt="Profile Image">{{ comment.comment_author.username }} | <small class="text-muted">{{ comment.created_on }}</small></strong>
+                            <hr>
+                            <p>{{ comment.comment_body }}</p>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="ms-2">No Comments yet.</p>
+                {% endif %}
             </div>
         </div>
     </div>
