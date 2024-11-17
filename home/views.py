@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, reverse, redirect
+from django.shortcuts import render, get_object_or_404, reverse, redirect, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
 # Imported models and forms
@@ -100,7 +100,8 @@ def post_comment(request, post_id):
             comment.comment_author = request.user
             comment.post = post
             comment.save()
-            return redirect(reverse('home'))
+            next_url = request.POST.get('next', reverse('home'))
+            return HttpResponseRedirect(next_url)
         else:
             print("Form Errors:", form.errors)
     else:

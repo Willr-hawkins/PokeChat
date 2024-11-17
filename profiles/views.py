@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .models import UserProfile
 from .forms import UserProfileForm
 from home.models import Post
+from home.forms import CommentForm
 
 def first_login_redirect(request):
     """
@@ -46,11 +47,13 @@ def profile_view(request):
     """
     profile = get_object_or_404(UserProfile, user=request.user)
     posts = Post.objects.filter(author=profile.user)
+    form = CommentForm()
 
     template = 'profiles/profile.html'
     context = {
         'profile': profile,
         'posts': posts,
+        'form': form,
     }
 
     return render(request, template, context)
