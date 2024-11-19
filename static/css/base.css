@@ -183,6 +183,7 @@ hr {
     font-weight: bold;
     text-transform: uppercase;
     pointer-events: none;
+    border-radius: 10px;
 }
 
 /* Posts */
@@ -323,6 +324,14 @@ hr {
     margin: 5px;
     max-width: 800px;
     width: 100%;
+    padding: 8px;
+}
+
+.post-comment-container {
+    background-color: #E4E0CF;
+    padding: 5px;
+    border-radius: 15px;
+    border: 2px solid #30362F;
 }
 
 .post-comment p,

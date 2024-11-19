@@ -101,10 +101,12 @@
                 {% if post.comments.all %}
                     {% for comment in post.comments.all %}
                         <div class="post-comment col-12 col-lg-8">
-                            <strong class="comment-title"><img src="{{ post.author.userprofile.profile_image.url }}"
-                                alt="Profile Image">{{ comment.comment_author.username }} | <small class="text-muted">{{ comment.created_on }}</small></strong>
-                            <hr>
-                            <p>{{ comment.comment_body }}</p>
+                            <div class="post-comment-container">
+                                <strong class="comment-title"><img src="{{ post.author.userprofile.profile_image.url }}"
+                                    alt="Profile Image">{{ comment.comment_author.username }} | <small class="text-muted">{{ comment.created_on }}</small></strong>
+                                <hr>
+                                <p>{{ comment.comment_body }}</p>
+                            </div>
                         </div>
                     {% endfor %}
                 {% else %}
