@@ -49,7 +49,7 @@ def add_post(request):
 @login_required
 def delete_post(request, post_id):
     """
-    Delete a post is the user is post.author.
+    Delete a post if the user is post.author.
     """
     post = get_object_or_404(Post, id=post_id, author=request.user)
 
@@ -113,4 +113,36 @@ def post_comment(request, post_id):
     }
 
     return render(request, 'home/index.html', context)
-    
+
+@login_required
+def delete_comment(request, comment_id):
+    """
+    Delete a comment if the user is the comment.comment_author.
+    """ 
+    comment = get_object_or_404(PostComment, id=comment_id, comment_author=request.user)
+    comment.delete()
+    next_url = request.POST.get('next', reverse('home'))
+    return HttpResponseRedirect(next_url)
+
+@login_required
+def edit_comment(request, comment_id):
+    """
+    Edit a comment if the user is the comment.comment_author.
+    """
+    comment = get_object_or_404(PostComment, id=comment_id, comment_author=request.user)
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            form.save()
+            next_url = request.POST.get('next', reverse('home'))
+            return HttpResponseRedirect(next_url)
+        else:
+            form = CommentForm(instance=comment)
+
+    context = {
+        'comment': comment,
+        'form': form,
+    }
+
+    return render(request, 'home/edit_comment_form.html', context)
