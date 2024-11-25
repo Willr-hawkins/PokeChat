@@ -9,22 +9,24 @@
             <img src="{{ profile.profile_image.url }}" class="profile-image" alt="Profile image">
         </div>
         <div class="col-8">
-            <div class="dropend">
-                <a class="float-end" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fa-xl fa-solid fa-gear" style="color: #30362F;"></i>
-                </a>
-                <ul class="dropdown-menu text-center">
-                    <div class="dropdown-menu-container">
-                        <li><a class="dropdown-item text-danger" href="{% url 'account_logout' %}">Sign Out</a></li>
-                        <hr style="width: 50%;">
-                        <li><a class="dropdown-item" href="#">Edit Profile</a></li>
-                        {% if request.user.is_superuser %}
-                        <hr style="width: 50%;">
-                        <li><a class="dropdown-item" href="{% url 'admin:index' %}">Admin Panel</a></li>
-                        {% endif %}
-                    </div>
-                </ul>
-            </div>
+            {% if profile.user == request.user %}
+                <div class="dropend">
+                    <a class="float-end" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-xl fa-solid fa-gear" style="color: #30362F;"></i>
+                    </a>
+                    <ul class="dropdown-menu text-center">
+                        <div class="dropdown-menu-container">
+                            <li><a class="dropdown-item text-danger" href="{% url 'account_logout' %}">Sign Out</a></li>
+                            <hr style="width: 50%;">
+                            <li><a class="dropdown-item" href="#">Edit Profile</a></li>
+                            {% if request.user.is_superuser %}
+                            <hr style="width: 50%;">
+                            <li><a class="dropdown-item" href="{% url 'admin:index' %}">Admin Panel</a></li>
+                            {% endif %}
+                        </div>
+                    </ul>
+                </div>
+            {% endif %}
             <h1 class="pt-3">{{ profile.user.username }}</h1>
             <hr>
             <p>{{ profile.profile_bio }}</p>
@@ -36,7 +38,6 @@
         <h2 class="text-center">Posts</h2>
         <hr style="width: 80%;">
         {% for post in posts %}
-        {% if post.author == profile.user %}
         <div id="posts" class="card col-6 mb-3" style="margin:20px auto;">
             <div class="row g-0">
                 <div class="col-md-4">
@@ -53,21 +54,23 @@
                 <div class="col-md-8">
                     <div class="card-body-container">
                         <div class="card-body">
-                            <div class="dropend">
-                                <a class="float-end" href="#" role="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <i class="fa-xl fa-solid fa-ellipsis" style="color: #30362F;"></i>
-                                </a>
-                                <ul class="dropdown-menu text-center">
-                                    <div class="dropdown-menu-container">
-                                        <li><a class="dropdown-item" href="{% url 'edit_status' post.id %}">Post
-                                                Status</a></li>
-                                        <hr style="width: 50%;">
-                                        <li><a class="dropdown-item" href="{% url 'delete_post' post.id %}"
-                                                style="color: red;">Delete Post</a></li>
-                                    </div>
-                                </ul>
-                            </div>
+                            {% if post.author == request.user %}
+                                <div class="dropend">
+                                    <a class="float-end" href="#" role="button" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <i class="fa-xl fa-solid fa-ellipsis" style="color: #30362F;"></i>
+                                    </a>
+                                    <ul class="dropdown-menu text-center">
+                                        <div class="dropdown-menu-container">
+                                            <li><a class="dropdown-item" href="{% url 'edit_status' post.id %}">Post
+                                                    Status</a></li>
+                                            <hr style="width: 50%;">
+                                            <li><a class="dropdown-item" href="{% url 'delete_post' post.id %}"
+                                                    style="color: red;">Delete Post</a></li>
+                                        </div>
+                                    </ul>
+                                </div>
+                            {% endif %}
                             <h4 class="card-title"><img src="{{ post.author.userprofile.profile_image.url }}"
                                     alt="Profile Image"> {{ post.author }}</h4>
                             <hr>
@@ -136,7 +139,6 @@
                 {% endif %}
             </div>
         </div>
-        {% endif %}
         {% endfor %}
     </div>
 </div>

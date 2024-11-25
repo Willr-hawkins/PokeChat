@@ -409,6 +409,35 @@ hr {
     margin: 0 auto;
 }
 
+/* Searching Page */
+#search-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px
+}
+
+.search {
+    max-width: 800px;
+    width: 100%;
+    background-color: #96BDC6 !important;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 15px;
+    align-items: center;
+}
+
+.search-container {
+    background-color: #E4E0CF !important;
+    border-radius: 15px;
+    border: 3px solid #30362F;
+    padding: 10px;
+    margin: 5px;
+}
+
 /* Form styles */
 .add-post-header,
 .create-profile-header {

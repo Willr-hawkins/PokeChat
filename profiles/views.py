@@ -57,3 +57,43 @@ def profile_view(request):
     }
 
     return render(request, template, context)
+
+def search_profiles(request):
+    """
+    Allow users to search for another user via thier username.
+    """
+    query = request.GET.get('q', '')
+    profiles = UserProfile.objects.select_related('user')
+
+    if query:
+        profiles = profiles.filter(
+            user__username__icontains=query
+        ) | profiles.filter(
+            user__first_name__icontains=query
+        ) | profiles.filter(
+            user__last_name__icontains=query
+        )
+
+    context = {
+        'profiles': profiles,
+        'query': query,
+    }
+
+    return render(request, 'profiles/search_profiles.html', context)
+
+def profile_detail(request, username):
+    """
+    Show the users profile once it has been searched for.
+    """
+
+    profile = get_object_or_404(UserProfile, user__username=username)
+    posts = Post.objects.filter(author=profile.user, status=1)
+    form = CommentForm()
+
+    context = {
+        'profile': profile,
+        'posts': posts,
+        'form': form,
+    }
+
+    return render(request, 'profiles/profile.html', context)

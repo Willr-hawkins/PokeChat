@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div id="search-page"></div>
+    <div class="search">
+        <div class="search-container">
+            <form method="get" action="{% url 'search_profiles' %}">
+                <input type="text" name="q" placeholder="Search users..." value="{{ query }}">
+                <button type="submit">Search</button>
+            </form>
+        
+            <h2>Results</h2>
+            <ul>
+                {% for profile in profiles %}
+                    <li>
+                        <a href="{% url 'profile_detail' profile.user.username %}">
+                            {{ profile.user.username }} - {{ profile.user.first_name }} {{ profile.user.last_name }}
+                        </a>
+                    </li>
+                {% empty %}
+                    <p>No users found matching your search.</p>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
