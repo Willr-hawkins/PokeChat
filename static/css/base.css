@@ -438,6 +438,35 @@ hr {
     margin: 5px;
 }
 
+.searchbar-profile-image {
+    border-radius: 50%;
+    border: 2px solid #30362F;
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+    margin: 3px;
+}
+
+.list-group {
+    border-radius: 15px;
+    border: 3px solid #30362F;
+}
+
+.list-group-item {
+    border: none !important;
+    border-radius: 3px !important;
+}
+
+.list-group-item:hover {
+    background-color: #96BDC695;
+}
+
+.search-results {
+    text-decoration: none;
+    color: #30362F;
+    font-weight: bold;
+}
+
 /* Form styles */
 .add-post-header,
 .create-profile-header {

@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,9 +26,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-i01ov%_fau87z3b!7zka_v^n%g!2p2ft-rgiqvvg*jk%)e_^y+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['8000-willrhawkins-pokechat-u2u0lu8fjn6.ws-eu116.gitpod.io']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
