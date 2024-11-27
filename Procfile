@@ -1,1 +1,1 @@
-web: gunicorn poke_chat.wsgi:application --log-file -
+web: gunicorn pokechat.wsgi:application
