@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://pokechat-100c878a0ff5.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['pokechat-59618d10cad5.herokuapp.com', 'localhost']
 
 
 # Application definition
