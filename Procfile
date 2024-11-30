@@ -1,1 +1,1 @@
-web: gunicorn pokechat.wsgi:application
+web: gunicorn PokeChat.wsgi:application
